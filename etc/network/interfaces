@@ -36,3 +36,6 @@ iface eth1 inet static
     post-up ip rule add to 51.254.165.86/32 table rt2
 # ====================================================
 # ====================================================
+# if doesn't work don't blame make sure rt2 rules exist
+# ip route list table rt2
+# ====================================================
