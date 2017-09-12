@@ -1,0 +1,43 @@
+auto lo
+iface lo inet loopback
+
+# ====================================================
+# - eth0
+# ====================================================
+allow-hotplug eth0
+iface eth0 inet static
+address 145.239.109.74
+netmask 255.255.255.255
+
+broadcast 145.239.109.74
+post-up route add 145.239.109.254 dev eth0
+post-up route add default gw 145.239.109.254 dev eth0
+# ====================================================
+# ====================================================
+
+# ====================================================
+# - Extra Interface eth1
+# you should execute => echo '1 rt2' >> /etc/iproute2/rt_tables
+# ====================================================
+# - Extra info.
+# - 51.254.165.86         // Static IP! Attached with Qemu-KVM.
+# - 255.255.255.255       // Single ip so netmask for single ip.
+# - 51.254.165.254        // My IP GATEWAY!.
+# - 51.254.165.86/32      // Means just one ip '51.254.165.86'.
+# ====================================================
+allow-hotplug eth1
+iface eth1 inet static
+address 51.254.165.86
+netmask 255.255.255.255
+broadcast 51.254.165.86
+
+iface eth1 inet static
+    address 51.254.165.86
+    netmask 255.255.255.255
+    broadcast 51.254.165.86
+    post-up ip route add 51.254.165.254 dev eth1
+    post-up ip route add default via 51.254.165.254 dev eth1 table rt2
+    post-up ip rule add from 51.254.165.86/32 table rt2
+    post-up ip rule add to 51.254.165.86/32 table rt2
+# ====================================================
+# ====================================================
