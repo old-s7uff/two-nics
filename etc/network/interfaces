@@ -1,3 +1,4 @@
+#!/bin/bash
 auto lo
 iface lo inet loopback
 
