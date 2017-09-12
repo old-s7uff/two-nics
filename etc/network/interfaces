@@ -25,6 +25,7 @@ post-up route add default gw 145.239.109.254 dev eth0
 # - 51.254.165.254        // My IP GATEWAY!.
 # - 51.254.165.86/32      // Means just one ip '51.254.165.86'.
 # ====================================================
+allow-hotplug eth1
 iface eth1 inet static
     address 51.254.165.86
     netmask 255.255.255.255
